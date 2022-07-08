@@ -1,0 +1,84 @@
+<?xml version="1.0" ?>
+<robot name="aras_bot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find aras_bot_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find aras_bot_description)/urdf/aras_bot.trans" />
+<xacro:include filename="$(find aras_bot_description)/urdf/aras_bot.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="0.06481013495129603 7.302365389934582e-06 0.6516569785485231" rpy="0 0 0"/>
+    <mass value="1798.6112099463053"/>
+    <inertia ixx="121.641889" iyy="598.347461" izz="500.777609" ixy="0.007171" iyz="-0.006447" ixz="32.092595"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aras_bot_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aras_bot_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="front_wheel_1">
+  <inertial>
+    <origin xyz="-3.547419091809445e-07 0.0480000000000001 -2.7755575615628914e-17" rpy="0 0 0"/>
+    <mass value="132.980344743548"/>
+    <inertia ixx="1.969472" iyy="3.734686" izz="1.969472" ixy="-0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.789293 0.048 -0.237" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aras_bot_description/meshes/front_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.789293 0.048 -0.237" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aras_bot_description/meshes/front_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="back_wheel_1">
+  <inertial>
+    <origin xyz="-3.547419089588999e-07 0.04799999999999992 1.942890293094024e-16" rpy="0 0 0"/>
+    <mass value="132.980344743548"/>
+    <inertia ixx="1.969472" iyy="3.734686" izz="1.969472" ixy="-0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.686133 0.048 -0.237" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aras_bot_description/meshes/back_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.686133 0.048 -0.237" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aras_bot_description/meshes/back_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="Rev1" type="continuous">
+  <origin xyz="-0.789293 -0.048 0.237" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="front_wheel_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+</joint>
+
+<joint name="Rev2" type="continuous">
+  <origin xyz="0.686133 -0.048 0.237" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="back_wheel_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+</robot>
